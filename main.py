@@ -18,20 +18,23 @@ for file in tqdm(explorer.files):
     dataArray = sound.get_array_of_samples()
     encodeSample = []
     afterAdpcmData = []
-    adpcm.resetState()
-    for data in dataArray:
-        encodeSample.append(adpcm.encode(data))
-    # print('encode sample len = ',len(encodeSample))
-    # print('encode sample max = ',max(encodeSample))
-    # print('encode sample min = ',min(encodeSample))
-    adpcm.resetState()
-    for data in encodeSample:
-        afterAdpcmData.append(adpcm.decode(data))
-    # print('decode sample len = ',len(afterAdpcmData))
-    # print('decode sample max = ',max(afterAdpcmData))
-    # print('decode sample min = ',min(afterAdpcmData))
-    afterAdpcmData = np.array(afterAdpcmData)
-    # print('-'*8)
-    # print(os.path.split(explorer.files[3])[1])
 
+    adpcm.resetState()
+
+    for data in dataArray:
+        '''
+        IMA-ADPCM encode
+        '''
+        encodeSample.append(adpcm.encode(data))
+    adpcm.resetState()
+
+    for data in encodeSample:
+        '''
+        IMA-ADPCM decode
+        '''
+        afterAdpcmData.append(adpcm.decode(data))
+    afterAdpcmData = np.array(afterAdpcmData)
+    
+    if not os.path.exists('adpcmed'):
+        os.makedirs('adpcmed')
     wavf.write(f'adpcmed/{os.path.split(file)[1]}', sound.frame_rate, afterAdpcmData.astype(np.int16))
