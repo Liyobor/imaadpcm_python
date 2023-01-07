@@ -71,7 +71,7 @@ def adpcm3Process(file):
         '''
         afterAdpcmData.append(adpcm3.decode(data))
     afterAdpcmData = np.array(afterAdpcmData)
-    print(afterAdpcmData)
+    # print(afterAdpcmData)
     
     if not os.path.exists('D:/adpcmed'):
         os.makedirs('D:/adpcmed')
@@ -91,4 +91,4 @@ if __name__ == '__main__':
             fileList.append(os.path.join(path,fileListTemp[index]))
 
     with Pool(os.cpu_count()) as pool:
-        list(tqdm(pool.imap(adpcmProcess,fileList),total=len(fileList)))
+        list(tqdm(pool.imap(adpcm3Process,fileList),total=len(fileList)))

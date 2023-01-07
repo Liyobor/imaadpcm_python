@@ -1,9 +1,16 @@
+from State import State
+
+
 class Adpcm:
 
     def __init__(self) -> None:
         self._ps = 0
         self._i = 0
         self._ss = 7
+
+
+        self.encodeState = State()
+        self.decodeState = State()
 
         self._i_table = [-1, -1, -1, -1, 2, 4, 6, 8,
         -1, -1, -1, -1, 2, 4, 6, 8]
@@ -57,3 +64,5 @@ class Adpcm:
         self._ps = 0
         self._i = 0
         self._ss = 7
+        self.encodeState.reset()
+        self.decodeState.reset()
