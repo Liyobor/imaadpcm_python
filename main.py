@@ -63,7 +63,6 @@ def adpcm3Process(file):
         IMA-ADPCM encode
         '''
         encodeSample.append(adpcm3.encode(data))
-    adpcm3.resetState()
 
     for data in encodeSample:
         '''
