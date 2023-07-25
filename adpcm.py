@@ -6,6 +6,7 @@ class Adpcm:
         self._ps = 0
         self._i = 0
         self._ss = 7
+        
         class State:
             def __init__(self) -> None:
                 self.valprev = 0
