@@ -1,4 +1,3 @@
-from State import State
 
 
 class Adpcm:
@@ -7,7 +6,13 @@ class Adpcm:
         self._ps = 0
         self._i = 0
         self._ss = 7
-
+        class State:
+            def __init__(self) -> None:
+                self.valprev = 0
+                self.index = 0
+            def reset(self):
+                self.valprev = 0
+                self.index = 0
 
         self.encodeState = State()
         self.decodeState = State()
@@ -24,7 +29,7 @@ class Adpcm:
         5358, 5894, 6484, 7132, 7845, 8630, 9493, 10442, 11487, 12635,
         13899, 15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794,
         32767]
-
+    
     def encode(self,input):
         sample:int = 0
         diff:int = input - self._ps

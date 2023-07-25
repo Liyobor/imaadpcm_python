@@ -81,7 +81,7 @@ def adpcm3Process(file):
 if __name__ == '__main__':
     
 
-    path = input("輸入路徑\n")
+    path = input("輸入音檔資料夾路徑\n")
     
     fileListTemp = os.listdir(path)
     fileList = []
